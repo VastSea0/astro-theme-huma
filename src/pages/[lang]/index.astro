@@ -1,0 +1,249 @@
+---
+import { LOCALES, useTranslations, type Lang } from "@/i18n";
+import Layout from "@/layouts/Base.astro";
+const t = useTranslations(Astro.currentLocale as Lang);
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+import heroImageAr from "@/assets/ar/hero.svg";
+import heroImageEn from "@/assets/en/hero.svg";
+import heroImageJa from "@/assets/ja/hero.svg";
+import heroImageZhCn from "@/assets/zh-cn/hero.svg";
+import { Image } from "astro:assets";
+
+const locale = Astro.currentLocale as Lang;
+
+export const getStaticPaths = () =>
+  Object.keys(LOCALES).map((lang) => ({
+    params: { lang },
+  }));
+---
+
+<Layout>
+ 
+  <p>
+    <em>
+      {
+        t({
+          ja: "HümaはFirefoxをベースにしたネイティブでオープンソースのウェブブラウザである。Hümaエクスプローラー、垂直タブ、インターネットなしで動作するHümaの歴史と神話ページなどの機能を提供しています。",
+          tr: "Hüma, Firefox tabanlı yerli ve açık kaynaklı bir web tarayıcısıdır. Hüma Gezgini, dikey sekmeler ve internetsiz çalışan Hüma Tarih ve Mitoloji sayfaları gibi özellikler sunar.",
+          "zh-cn":
+            "i18n Starter 是一个用于创建多语言网站的简单 Astro 主题。它支持 Astro v4.0 的 i18n 功能。",
+          ar: "i18n Starter هو موضوع Astro بسيط لإنشاء مواقع الويب متعددة اللغات.يدعم ميزة i18n من Astro v4.0.",
+        })
+      }
+    </em>
+  </p>
+  <!--
+
+    <p>
+    <a
+      href={`https://github.com/VastSea0/Huma${locale}/guides/internationalization/`}
+      target="_blank"
+    >
+      Github
+      <span class="material-icons-sharp dir">open_in_new</span>
+    </a>
+  </p> 
+  
+  -->
+
+  <p>
+    {
+      t({
+        ja: "Hümaはネイティブでオープンソースのウェブブラウザである。Firefoxをベースに開発され、プライバシー重視のデザインとカスタマイズ可能な機能が特徴です。独自のテーマに加えて、Hümaはページ間の移動を容易にするHüma Explorer、垂直タブのサポート、インターネットなしで動作するHüma HistoryとMythologyページ、ファイル共有のための10MB制限を持つHüma Bulut、トルコ語構文のスクリプトツールHüma Betikなどの機能を提供している。Pardusエコシステムへの貢献を目指して、Hümaにはトルコ神話と歴史に関する情報も含まれている。",
+        en: "Hüma is a native and open source web browser. Developed based on Firefox, it is characterized by its privacy-oriented design and customizable features. In addition to its own theme, Hüma offers features such as Hüma Explorer, which makes it easy to navigate between pages, vertical tab support, Hüma History and Mythology pages that work without internet, Hüma Bulut, which has a 10MB limit for file sharing, and Hüma Betik, a scripting tool with Turkish syntax. Aiming to contribute to the Pardus ecosystem, Hüma also includes information about Turkish mythology and history.",
+        tr: "Hüma, yerli ve açık kaynaklı bir web tarayıcısıdır. Firefox tabanlı olarak geliştirilen bu tarayıcı, gizlilik odaklı tasarımı ve özelleştirilebilir özellikleriyle öne çıkar. Hüma, kendi temasının yanı sıra sayfalar arasında gezinmeyi kolaylaştıran Hüma Gezgini, dikey sekme desteği, internetsiz çalışan Hüma Tarih ve Mitoloji sayfaları, dosya paylaşımı için 10MB sınırı olan Hüma Bulut ve Türkçe söz dizimine sahip betik yazma aracı Hüma Betik gibi özellikler sunar. Pardus ekosistemine katkı sağlamayı amaçlayan Hüma, Türk mitolojisi ve tarihi hakkında da bilgi içermektedir.",
+        "zh-cn":
+          "基本上，只支持子目录 URL 方案。 它由以下 URL 为每种语言进行管理。 根 URL 将重定向到指定的默认语言。",
+        ar: "أساساً، يتم دعم نظام URL الفرعي فقط. يتم إدارتها من خلال URL كما يلي لكل لغة. يتم توجيه عنوان URL الجذري إلى اللغة الافتراضية المحددة.",
+      })
+    }
+  </p>
+
+  <h2>
+    {
+      t({
+        ja: "ヒュマのサブプロジェクト",
+        en: "Sub-projects of Hüma",
+        tr: "Hüma'nın alt projeleri",
+        
+      })
+    }
+  </h2>
+
+  <ul>
+    <li>
+      <a href="https://github.com/Vastsea0/humapages">
+        Hüma Gezgini
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/Vastsea0/huma-sekmeleri">
+        Hüma Sekmeleri
+      </a>
+    </li>
+    <li>
+      <a href="https://humadosya.netlify.app">
+        Hüma Bulut
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/Vastsea0/humapy">
+        Hüma Betik
+      </a>
+    </li>
+  </ul>
+
+  <h2>
+    {
+      t({
+        ja: "特徴",
+        en: "Feature",
+        tr: "Özellikler",
+ 
+      })
+    }
+  </h2>
+
+  <ul>
+    <li>
+      {
+        t({
+          ja: "プライバシーを重視し、遠隔測定を送信しない。",
+          en: "Privacy-oriented, does not send telemetry, values privacy",
+          tr: "Gizlilik odaklı, telemetri göndermez, mahremiyete önem verir",
+   
+        })
+      }
+    </li>
+    <li>
+      {
+        t({
+          ja: "フリーでオープンソースだ。",
+          en: "It is free and open source.",
+          tr: "Özgür ve açık kaynaktır.",
+          
+        })
+      }
+    </li>
+    <li>
+      {
+        t({
+          ja: "私たちは日本語と日本を愛している。:)",
+          
+          
+        })
+      }
+    </li>
+     
+    <li>
+      {
+        t({
+          ja: "垂直タブとヒュマ・エクスプローラー",
+          en: "Vertical tabs and Hüma Explorer",
+          tr: "Dikey sekmeler ve Hüma Gezgini",
+          
+        })
+      }
+    </li>
+    <li>
+      {
+        t({
+          en: "Static pages with content about History and Mythology",
+          tr: "Tarih ve Mitoloji hakkında içeriklere sahip statik sayfalar",
+          ja: "歴史と神話に関する静的ページ",
+       
+        })
+      }
+    </li>
+  </ul>
+
+  <h2>
+    {
+      t({
+        en: "Getting Started",
+        tr: "Başlarken",
+        ja: "はじめに",
+       
+      })
+    }
+  </h2>
+
+  <p>
+    {
+      t({
+        ja: "Hüma の最新バージョンを GitHub からダウンロードできます。'Hüma ほど自由！'",
+        en: "You can download the latest version of Hüma from GitHub. 'As Free as Hüma!'",
+        tr: "Hüma'nın son sürümünü GitHub'dan indirebilirsiniz. 'Hüma Kadar Özgür!'",
+        
+         
+      })
+    }
+    
+  </p>
+
+  <p>
+    <a href="https://github.com/VastSea0/Huma" target="_blank">
+      https://github.com/VastSea0/Huma
+      <span class="material-icons-sharp dir">open_in_new</span>
+    </a>
+  </p>
+
+  <p>
+    {
+      t({
+        ja: "準備ができたら、さっそく詳細に進みましょう！",
+        en: "If you're ready, let's proceed to the details!",
+        tr: "Eğer sende hazırsan haydi detaylara geçelim!",
+        
+      })
+    }
+    
+  </p>
+
+  <p>
+    <a href={getRelativeLocaleUrl(locale, "detaylar")} class="start">
+      <span class="material-icons-sharp dir">arrow_forward</span>
+      {
+        t({
+          ja: "詳細を続ける",
+          en: "Continue to details",
+          tr: "Detaylara devam et",
+          
+        })
+      }
+      
+    </a>
+  </p>
+</Layout>
+
+<style>
+  ul {
+    margin-block-start: var(--sp-s);
+    list-style: disc;
+    padding-inline-start: 1em;
+  }
+
+  h2 {
+    color: var(--color-theme);
+    margin-block-start: var(--sp-l);
+  }
+
+  em {
+    display: block;
+    font-style: normal;
+    font-size: 1.3em;
+    margin-block-end: var(--sp-m);
+  }
+
+  .start {
+    display: block;
+    width: fit-content;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background: var(--color-main);
+    color: var(--color-base);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+</style>
